@@ -46,7 +46,7 @@ class AATService {
     func stopSubscriber(_ completion: ResultHandler<Void>? = nil) {
         subscriber?.stop(completion: {[weak self] result in
             switch result {
-            case .success():
+            case .success:
                 self?.subscriber = nil
             default:
                 break
