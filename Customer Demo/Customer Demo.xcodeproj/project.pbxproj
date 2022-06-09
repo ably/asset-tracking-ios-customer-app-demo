@@ -16,6 +16,10 @@
 		0C510C89285089BF008F0E5C /* Customer_DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C510C88285089BF008F0E5C /* Customer_DemoTests.swift */; };
 		0C510C93285089BF008F0E5C /* Customer_DemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C510C92285089BF008F0E5C /* Customer_DemoUITests.swift */; };
 		0C510C95285089BF008F0E5C /* Customer_DemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C510C94285089BF008F0E5C /* Customer_DemoUITestsLaunchTests.swift */; };
+		0C510CA22851DD86008F0E5C /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C510CA12851DD86008F0E5C /* Environment.swift */; };
+		0C510CA42851DE49008F0E5C /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C510CA32851DE49008F0E5C /* Secrets.plist */; };
+		0C510CA82851E1AE008F0E5C /* AblyAssetTrackingSubscriber in Frameworks */ = {isa = PBXBuildFile; productRef = 0C510CA72851E1AE008F0E5C /* AblyAssetTrackingSubscriber */; };
+		0C510CAB2851E306008F0E5C /* AATService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C510CAA2851E306008F0E5C /* AATService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,9 @@
 		0C510C8E285089BF008F0E5C /* Customer DemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Customer DemoUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C510C92285089BF008F0E5C /* Customer_DemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer_DemoUITests.swift; sourceTree = "<group>"; };
 		0C510C94285089BF008F0E5C /* Customer_DemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer_DemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		0C510CA12851DD86008F0E5C /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		0C510CA32851DE49008F0E5C /* Secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
+		0C510CAA2851E306008F0E5C /* AATService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AATService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C510CA82851E1AE008F0E5C /* AblyAssetTrackingSubscriber in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,13 +107,15 @@
 		0C510C70285089BD008F0E5C /* Customer Demo */ = {
 			isa = PBXGroup;
 			children = (
+				0C510CA92851E2F4008F0E5C /* Services */,
+				0C510CA52851E091008F0E5C /* Screens */,
 				0C510C71285089BD008F0E5C /* AppDelegate.swift */,
 				0C510C73285089BD008F0E5C /* SceneDelegate.swift */,
-				0C510C75285089BD008F0E5C /* ViewController.swift */,
-				0C510C77285089BD008F0E5C /* Main.storyboard */,
 				0C510C7A285089BF008F0E5C /* Assets.xcassets */,
 				0C510C7C285089BF008F0E5C /* LaunchScreen.storyboard */,
 				0C510C7F285089BF008F0E5C /* Info.plist */,
+				0C510CA32851DE49008F0E5C /* Secrets.plist */,
+				0C510CA12851DD86008F0E5C /* Environment.swift */,
 			);
 			path = "Customer Demo";
 			sourceTree = "<group>";
@@ -127,6 +137,23 @@
 			path = "Customer DemoUITests";
 			sourceTree = "<group>";
 		};
+		0C510CA52851E091008F0E5C /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				0C510C75285089BD008F0E5C /* ViewController.swift */,
+				0C510C77285089BD008F0E5C /* Main.storyboard */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		0C510CA92851E2F4008F0E5C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				0C510CAA2851E306008F0E5C /* AATService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +170,9 @@
 			dependencies = (
 			);
 			name = "Customer Demo";
+			packageProductDependencies = (
+				0C510CA72851E1AE008F0E5C /* AblyAssetTrackingSubscriber */,
+			);
 			productName = "Customer Demo";
 			productReference = 0C510C6E285089BD008F0E5C /* Customer Demo.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +245,9 @@
 				Base,
 			);
 			mainGroup = 0C510C65285089BD008F0E5C;
+			packageReferences = (
+				0C510CA62851E1AE008F0E5C /* XCRemoteSwiftPackageReference "ably-asset-tracking-swift" */,
+			);
 			productRefGroup = 0C510C6F285089BD008F0E5C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -231,6 +264,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C510CA42851DE49008F0E5C /* Secrets.plist in Resources */,
 				0C510C7E285089BF008F0E5C /* LaunchScreen.storyboard in Resources */,
 				0C510C7B285089BF008F0E5C /* Assets.xcassets in Resources */,
 				0C510C79285089BD008F0E5C /* Main.storyboard in Resources */,
@@ -259,6 +293,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C510C76285089BD008F0E5C /* ViewController.swift in Sources */,
+				0C510CA22851DD86008F0E5C /* Environment.swift in Sources */,
+				0C510CAB2851E306008F0E5C /* AATService.swift in Sources */,
 				0C510C72285089BD008F0E5C /* AppDelegate.swift in Sources */,
 				0C510C74285089BD008F0E5C /* SceneDelegate.swift in Sources */,
 			);
@@ -602,6 +638,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0C510CA62851E1AE008F0E5C /* XCRemoteSwiftPackageReference "ably-asset-tracking-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ably/ably-asset-tracking-swift";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0C510CA72851E1AE008F0E5C /* AblyAssetTrackingSubscriber */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0C510CA62851E1AE008F0E5C /* XCRemoteSwiftPackageReference "ably-asset-tracking-swift" */;
+			productName = AblyAssetTrackingSubscriber;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0C510C66285089BD008F0E5C /* Project object */;
 }

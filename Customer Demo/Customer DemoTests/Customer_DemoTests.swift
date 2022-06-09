@@ -2,7 +2,7 @@
 //  Customer_DemoTests.swift
 //  Customer DemoTests
 //
-//  Created by Jakub Jankowski on 08/06/2022.
+//  Copyright 2022 Ably Real-time Ltd (ably.com)
 //
 
 import XCTest
