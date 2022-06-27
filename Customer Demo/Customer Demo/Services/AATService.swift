@@ -1,6 +1,6 @@
 //
 //  AATService.swift
-//  Rider Demo
+//  Customer Demo
 //
 //  Copyright 2022 Ably Real-time Ltd (ably.com)
 //
@@ -24,7 +24,7 @@ class AATService {
     
     let ablyAPIKey = EnvironmentHelper.ablyKey
 
-    var delegate: AATServiceDelegate?
+    weak var delegate: AATServiceDelegate?
     
     private(set) var desiredResolution: Resolution?
     private var subscriber: Subscriber?

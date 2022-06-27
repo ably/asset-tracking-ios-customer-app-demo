@@ -1,6 +1,6 @@
 //
 //  Environment.swift
-//  Rider Demo
+//  Customer Demo
 //
 //  Copyright 2022 Ably Real-time Ltd (ably.com)
 //
