@@ -15,6 +15,7 @@ class SubscriberStatusViewController: UIViewController {
     @IBOutlet private var trackableIDLabel: UILabel!
     @IBOutlet private var mapView: MKMapView!
     
+    @IBOutlet private var statusLabel: UILabel!
     @IBOutlet private var datetimeLabel: UILabel!
     @IBOutlet private var latitudeLabel: UILabel!
     @IBOutlet private var longitudeLabel: UILabel!
@@ -29,10 +30,11 @@ class SubscriberStatusViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        viewModel?.viewDidLoad()
         trackableIDLabel.text = "Trackable ID: \(viewModel?.trackableID ?? "Unknown")"
         updateModeButton()
+        statusLabel.text = "Status: Unknown"
         
+        viewModel?.viewDidLoad()
         super.viewDidLoad()
     }
     
@@ -65,6 +67,21 @@ class SubscriberStatusViewController: UIViewController {
         datetimeLabel.text = "Time: \(Date(timeIntervalSince1970: locationUpdate.location.timestamp).description)"
         latitudeLabel.text = "Latitude: \(location.latitude.description)"
         longitudeLabel.text = "Longitude: \(location.longitude.description)"
+    }
+    
+    func updateStatus(_ status: ConnectionState) {
+        let statusDescription: String
+        
+        switch status {
+        case .failed:
+            statusDescription = "Failed"
+        case .offline:
+            statusDescription = "Offline"
+        case .online:
+            statusDescription = "Online"
+        }
+        
+        statusLabel.text = "Status: \(statusDescription)"
     }
     
     @IBAction private func modeButtonTapped() {
@@ -106,6 +123,7 @@ class SubscriberStatusViewController: UIViewController {
             image = UIImage(systemName: "person.fill")
         }
         
+        modeButton.setTitle("", for: .normal)
         modeButton.setImage(image, for: .normal)
     }
 }

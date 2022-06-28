@@ -42,6 +42,7 @@ class SubscriberStatusViewModel {
 
 extension SubscriberStatusViewModel: AATServiceDelegate {
     func subscriber(sender: Subscriber, didChangeAssetConnectionStatus status: ConnectionState) {
+        viewController?.updateStatus(status)
         print("subscriber(sender: \(sender), didChangeAssetConnectionStatus: \(status))")
     }
     
