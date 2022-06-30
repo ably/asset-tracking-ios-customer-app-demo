@@ -23,6 +23,7 @@ class SubscriberStatusViewController: UIViewController {
     
     weak var trackableAnnotation: MKPointAnnotation?
     var viewModel: SubscriberStatusViewModel?
+    var ignoreRegionChange = true
     
     func configure(resolution: Resolution, trackableID: String) {
         viewModel = SubscriberStatusViewModel(subscriberResolution: resolution, trackableID: trackableID, viewController: self)
@@ -33,7 +34,8 @@ class SubscriberStatusViewController: UIViewController {
         trackableIDLabel.text = "Trackable ID: \(viewModel?.trackableID ?? "Unknown")"
         updateModeButton()
         statusLabel.text = "Status: Unknown"
-        
+        mapView.delegate = self
+
         viewModel?.viewDidLoad()
         super.viewDidLoad()
     }
@@ -88,10 +90,12 @@ class SubscriberStatusViewController: UIViewController {
         guard let mode = viewModel?.mode else { return }
         
         switch mode {
-        case .noUser:
-            viewModel?.mode = .withUser
-        case .withUser:
-            viewModel?.mode = .noUser
+        case .trackableOnly:
+            viewModel?.mode = .trackableWithUser
+        case .trackableWithUser:
+            viewModel?.mode = .trackableOnly
+        case .free:
+            viewModel?.mode = .trackableOnly
         }
         
         updateModeButton()
@@ -102,13 +106,17 @@ class SubscriberStatusViewController: UIViewController {
         guard let mode = viewModel?.mode else { return }
         
         switch mode {
-        case .noUser:
+        case .trackableOnly:
             guard let location = trackableAnnotation?.coordinate else { return }
             
             let region = MKCoordinateRegion(center: location, span: MKCoordinateSpan())
+            ignoreRegionChange = true
             mapView.setRegion(region, animated: true)
-        case .withUser:
+        case .trackableWithUser:
+            ignoreRegionChange = true
             mapView.showAnnotations(mapView.annotations, animated: true)
+        case .free:
+            () // do nothing
         }
     }
     
@@ -117,13 +125,26 @@ class SubscriberStatusViewController: UIViewController {
         
         let image: UIImage?
         switch mode {
-        case .noUser:
+        case .trackableOnly:
             image = UIImage(systemName: "person.2.fill")
-        case .withUser:
+        case .trackableWithUser:
             image = UIImage(systemName: "person.fill")
+        case .free:
+            image = UIImage(systemName: "hand.wave.fill")
         }
         
         modeButton.setTitle("", for: .normal)
         modeButton.setImage(image, for: .normal)
+    }
+}
+
+extension SubscriberStatusViewController: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        if !ignoreRegionChange {
+            viewModel?.mode = .free
+            updateModeButton()
+        }
+        ignoreRegionChange = false
     }
 }

@@ -18,8 +18,8 @@ class SubscriberStatusViewModel {
     let subscriberResolution: Resolution
     let aatService = AATService.sharedInstance
     
-    enum Mode { case noUser, withUser }
-    var mode: Mode = .noUser
+    enum Mode { case trackableOnly, trackableWithUser, free }
+    var mode: Mode = .trackableOnly
     
     init(subscriberResolution: Resolution, trackableID: String, viewController: SubscriberStatusViewController) {
         self.trackableID = trackableID
