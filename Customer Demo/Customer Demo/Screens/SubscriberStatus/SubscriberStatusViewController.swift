@@ -19,7 +19,8 @@ class SubscriberStatusViewController: UIViewController {
     @IBOutlet private var datetimeLabel: UILabel!
     @IBOutlet private var latitudeLabel: UILabel!
     @IBOutlet private var longitudeLabel: UILabel!
-    @IBOutlet private var modeButton: UIButton!
+    @IBOutlet private var mapTrackingModeButton: UIButton!
+    @IBOutlet private var mapTypeButton: UIButton!
     
     weak var trackableAnnotation: MKPointAnnotation?
     var viewModel: SubscriberStatusViewModel?
@@ -32,7 +33,8 @@ class SubscriberStatusViewController: UIViewController {
     
     override func viewDidLoad() {
         trackableIDLabel.text = "Trackable ID: \(viewModel?.trackableID ?? "Unknown")"
-        updateModeButton()
+        updateMapTrackingModeButton()
+        updateMapTypeButton()
         statusLabel.text = "Status: Unknown"
         mapView.delegate = self
 
@@ -86,24 +88,35 @@ class SubscriberStatusViewController: UIViewController {
         statusLabel.text = "Status: \(statusDescription)"
     }
     
-    @IBAction private func modeButtonTapped() {
-        guard let mode = viewModel?.mode else { return }
+    @IBAction private func mapTrackingModeButtonTapped() {
+        guard let mode = viewModel?.mapTrackingMode else { return }
         
         switch mode {
         case .trackableOnly:
-            viewModel?.mode = .trackableWithUser
+            viewModel?.mapTrackingMode = .trackableWithUser
         case .trackableWithUser:
-            viewModel?.mode = .trackableOnly
+            viewModel?.mapTrackingMode = .trackableOnly
         case .free:
-            viewModel?.mode = .trackableOnly
+            viewModel?.mapTrackingMode = .trackableOnly
         }
         
-        updateModeButton()
+        updateMapTrackingModeButton()
         updateMapRegion()
     }
     
+    @IBAction private func mapTypeButtonTapped() {
+        switch mapView.mapType {
+        case .standard:
+            mapView.mapType = .hybrid
+        default:
+            mapView.mapType = .standard
+        }
+
+        updateMapTypeButton()
+    }
+    
     func updateMapRegion() {
-        guard let mode = viewModel?.mode else { return }
+        guard let mode = viewModel?.mapTrackingMode else { return }
         
         switch mode {
         case .trackableOnly:
@@ -120,8 +133,8 @@ class SubscriberStatusViewController: UIViewController {
         }
     }
     
-    func updateModeButton() {
-        guard let mode = viewModel?.mode else { return }
+    func updateMapTrackingModeButton() {
+        guard let mode = viewModel?.mapTrackingMode else { return }
         
         let image: UIImage?
         switch mode {
@@ -133,8 +146,22 @@ class SubscriberStatusViewController: UIViewController {
             image = UIImage(systemName: "hand.wave.fill")
         }
         
-        modeButton.setTitle("", for: .normal)
-        modeButton.setImage(image, for: .normal)
+        mapTrackingModeButton.setTitle("", for: .normal)
+        mapTrackingModeButton.setImage(image, for: .normal)
+    }
+    
+    func updateMapTypeButton() {
+        mapTypeButton.setTitle("", for: .normal)
+        
+        let image: UIImage?
+        switch mapView.mapType {
+        case .hybrid:
+            image = UIImage(systemName: "map.fill")
+        default:
+            image = UIImage(systemName: "airplane")
+        }
+        
+        mapTypeButton.setImage(image, for: .normal)
     }
 }
 
@@ -142,8 +169,8 @@ extension SubscriberStatusViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         if !ignoreRegionChange {
-            viewModel?.mode = .free
-            updateModeButton()
+            viewModel?.mapTrackingMode = .free
+            updateMapTrackingModeButton()
         }
         ignoreRegionChange = false
     }

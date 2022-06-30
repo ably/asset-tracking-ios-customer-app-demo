@@ -76,7 +76,19 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="positioning"/>
                                 <connections>
-                                    <action selector="modeButtonTapped" destination="Y6W-OH-hqX" eventType="touchUpInside" id="IYw-mx-Jqc"/>
+                                    <action selector="mapTrackingModeButtonTapped" destination="Y6W-OH-hqX" eventType="touchUpInside" id="XSd-CW-KU3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Qd-jj-b7u">
+                                <rect key="frame" x="338" y="128.5" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="Wig-og-d78"/>
+                                    <constraint firstAttribute="height" constant="44" id="iPo-Vs-WBt"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" image="positioning"/>
+                                <connections>
+                                    <action selector="mapTypeButtonTapped" destination="Y6W-OH-hqX" eventType="touchUpInside" id="xcJ-Is-ERs"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -85,6 +97,7 @@
                         <constraints>
                             <constraint firstItem="7Ih-R5-ztW" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="4t8-Wx-x52"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="7Ih-R5-ztW" secondAttribute="trailing" id="BJR-V6-ikc"/>
+                            <constraint firstItem="1Qd-jj-b7u" firstAttribute="top" secondItem="7Ih-R5-ztW" secondAttribute="top" constant="32" id="CBg-IA-uut"/>
                             <constraint firstItem="xdi-r7-gyz" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="CrX-6B-uvC"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="Xrz-Op-KO2" secondAttribute="bottom" id="FAD-C9-Klu"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="xdi-r7-gyz" secondAttribute="trailing" constant="16" id="IV8-L7-uyq"/>
@@ -92,6 +105,7 @@
                             <constraint firstItem="xdi-r7-gyz" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="16" id="Ll9-dJ-FUh"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="O3Y-KQ-JKl" secondAttribute="trailing" constant="32" id="UaY-WS-PVa"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Xrz-Op-KO2" secondAttribute="trailing" id="UkJ-Wk-XCo"/>
+                            <constraint firstItem="7Ih-R5-ztW" firstAttribute="trailing" secondItem="1Qd-jj-b7u" secondAttribute="trailing" constant="32" id="avY-Ur-Bmq"/>
                             <constraint firstItem="7Ih-R5-ztW" firstAttribute="top" secondItem="xdi-r7-gyz" secondAttribute="bottom" constant="16" id="cGO-iS-eyh"/>
                             <constraint firstItem="O3Y-KQ-JKl" firstAttribute="centerY" secondItem="Xrz-Op-KO2" secondAttribute="top" id="e2O-Dx-S4a"/>
                             <constraint firstItem="Xrz-Op-KO2" firstAttribute="top" secondItem="7Ih-R5-ztW" secondAttribute="bottom" id="yds-jD-VaD"/>
@@ -101,8 +115,9 @@
                         <outlet property="datetimeLabel" destination="Bb6-NW-xQb" id="o9t-yz-8Gg"/>
                         <outlet property="latitudeLabel" destination="oTa-3d-gPD" id="MwG-DZ-4o1"/>
                         <outlet property="longitudeLabel" destination="tQB-wQ-Qho" id="l2X-0T-h4f"/>
+                        <outlet property="mapTrackingModeButton" destination="O3Y-KQ-JKl" id="xpa-0e-tWL"/>
+                        <outlet property="mapTypeButton" destination="1Qd-jj-b7u" id="2m4-Gd-12S"/>
                         <outlet property="mapView" destination="7Ih-R5-ztW" id="9fZ-a2-LCH"/>
-                        <outlet property="modeButton" destination="O3Y-KQ-JKl" id="G1i-yG-ivT"/>
                         <outlet property="statusLabel" destination="Ffu-Q0-VcK" id="4tv-2m-VHz"/>
                         <outlet property="trackableIDLabel" destination="xdi-r7-gyz" id="Vec-Cx-1yZ"/>
                     </connections>
