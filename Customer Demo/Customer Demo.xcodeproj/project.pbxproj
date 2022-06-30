@@ -16,6 +16,7 @@
 		0C510CA82851E1AE008F0E5C /* AblyAssetTrackingSubscriber in Frameworks */ = {isa = PBXBuildFile; productRef = 0C510CA72851E1AE008F0E5C /* AblyAssetTrackingSubscriber */; };
 		0C510CAB2851E306008F0E5C /* AATService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C510CAA2851E306008F0E5C /* AATService.swift */; };
 		0C510CB0285208A2008F0E5C /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 0C510CAF285208A2008F0E5C /* .swiftlint.yml */; };
+		21784C42286DE003003E5FB0 /* LocationUpdateHistoryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21784C41286DE003003E5FB0 /* LocationUpdateHistoryInteractor.swift */; };
 		21ECADC028630399008D946D /* Setup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21ECADBC28630399008D946D /* Setup.storyboard */; };
 		21ECADC128630399008D946D /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ECADBE28630399008D946D /* SetupViewController.swift */; };
 		21ECADC228630399008D946D /* SetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ECADBF28630399008D946D /* SetupViewModel.swift */; };
@@ -36,6 +37,7 @@
 		0C510CA32851DE49008F0E5C /* Secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
 		0C510CAA2851E306008F0E5C /* AATService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AATService.swift; sourceTree = "<group>"; };
 		0C510CAF285208A2008F0E5C /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		21784C41286DE003003E5FB0 /* LocationUpdateHistoryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationUpdateHistoryInteractor.swift; sourceTree = "<group>"; };
 		21ECADBD28630399008D946D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Setup.storyboard; sourceTree = "<group>"; };
 		21ECADBE28630399008D946D /* SetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
 		21ECADBF28630399008D946D /* SetupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupViewModel.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				21ECADC628630C97008D946D /* SubscriberStatus.storyboard */,
 				21ECADC728630C97008D946D /* SubscriberStatusViewModel.swift */,
 				21ECADC428630541008D946D /* SubscriberStatusViewController.swift */,
+				21784C41286DE003003E5FB0 /* LocationUpdateHistoryInteractor.swift */,
 			);
 			path = SubscriberStatus;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 			files = (
 				0C510CA22851DD86008F0E5C /* Environment.swift in Sources */,
 				21ECADC528630541008D946D /* SubscriberStatusViewController.swift in Sources */,
+				21784C42286DE003003E5FB0 /* LocationUpdateHistoryInteractor.swift in Sources */,
 				21ECADC928630C97008D946D /* SubscriberStatusViewModel.swift in Sources */,
 				0C510CAB2851E306008F0E5C /* AATService.swift in Sources */,
 				0C510C72285089BD008F0E5C /* AppDelegate.swift in Sources */,

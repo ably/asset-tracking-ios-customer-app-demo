@@ -113,13 +113,13 @@
                     </view>
                     <connections>
                         <outlet property="datetimeLabel" destination="Bb6-NW-xQb" id="o9t-yz-8Gg"/>
-                        <outlet property="latitudeLabel" destination="oTa-3d-gPD" id="MwG-DZ-4o1"/>
-                        <outlet property="longitudeLabel" destination="tQB-wQ-Qho" id="l2X-0T-h4f"/>
+                        <outlet property="locationLabel" destination="oTa-3d-gPD" id="fbu-Pk-JV8"/>
                         <outlet property="mapTrackingModeButton" destination="O3Y-KQ-JKl" id="xpa-0e-tWL"/>
                         <outlet property="mapTypeButton" destination="1Qd-jj-b7u" id="2m4-Gd-12S"/>
                         <outlet property="mapView" destination="7Ih-R5-ztW" id="9fZ-a2-LCH"/>
                         <outlet property="statusLabel" destination="Ffu-Q0-VcK" id="4tv-2m-VHz"/>
                         <outlet property="trackableIDLabel" destination="xdi-r7-gyz" id="Vec-Cx-1yZ"/>
+                        <outlet property="updateIntervalLabel" destination="tQB-wQ-Qho" id="RUx-U2-4li"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

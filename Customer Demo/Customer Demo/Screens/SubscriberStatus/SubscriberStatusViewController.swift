@@ -17,8 +17,8 @@ class SubscriberStatusViewController: UIViewController {
     
     @IBOutlet private var statusLabel: UILabel!
     @IBOutlet private var datetimeLabel: UILabel!
-    @IBOutlet private var latitudeLabel: UILabel!
-    @IBOutlet private var longitudeLabel: UILabel!
+    @IBOutlet private var locationLabel: UILabel!
+    @IBOutlet private var updateIntervalLabel: UILabel!
     @IBOutlet private var mapTrackingModeButton: UIButton!
     @IBOutlet private var mapTypeButton: UIButton!
     
@@ -69,8 +69,19 @@ class SubscriberStatusViewController: UIViewController {
         updateMapRegion()
         
         datetimeLabel.text = "Time: \(Date(timeIntervalSince1970: locationUpdate.location.timestamp).description)"
-        latitudeLabel.text = "Latitude: \(location.latitude.description)"
-        longitudeLabel.text = "Longitude: \(location.longitude.description)"
+        locationLabel.text = "Location: \(String(format: "%.8f", location.latitude)), \(String(format: "%.8f", location.longitude))"
+        
+        var lastUpdateIntervalString = "Unknown"
+        if let value = viewModel?.locationUpdateHistoryInteractor.lastInterval {
+            lastUpdateIntervalString = String(format: "%.4f", value)
+        }
+        
+        var averageUpdateIntervalString = "Unknown"
+        if let value = viewModel?.locationUpdateHistoryInteractor.averageInterval {
+            averageUpdateIntervalString = String(format: "%.4f", value)
+        }
+        
+        updateIntervalLabel.text = "Update interval: \(lastUpdateIntervalString) / \(averageUpdateIntervalString) (last / avg)"
     }
     
     func updateStatus(_ status: ConnectionState) {

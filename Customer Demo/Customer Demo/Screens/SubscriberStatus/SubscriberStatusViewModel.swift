@@ -21,6 +21,8 @@ class SubscriberStatusViewModel {
     enum MapTrackingMode { case trackableOnly, trackableWithUser, free }
     var mapTrackingMode: MapTrackingMode = .trackableOnly
     
+    var locationUpdateHistoryInteractor = LocationUpdateHistoryInteractor()
+    
     init(subscriberResolution: Resolution, trackableID: String, viewController: SubscriberStatusViewController) {
         self.trackableID = trackableID
         self.subscriberResolution = subscriberResolution
@@ -55,6 +57,7 @@ extension SubscriberStatusViewModel: AATServiceDelegate {
     }
     
     func subscriber(sender: Subscriber, didUpdateEnhancedLocation locationUpdate: LocationUpdate) {
+        locationUpdateHistoryInteractor.append(locationUpdate)
         viewController?.updateLocation(locationUpdate: locationUpdate)
         print("subscriber(sender: \(sender), didUpdateEnhancedLocation: \(locationUpdate))")
     }
