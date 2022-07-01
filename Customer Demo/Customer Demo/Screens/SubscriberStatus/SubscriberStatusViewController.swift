@@ -150,9 +150,9 @@ class SubscriberStatusViewController: UIViewController {
         let image: UIImage?
         switch mode {
         case .trackableOnly:
-            image = UIImage(systemName: "person.2.fill")
-        case .trackableWithUser:
             image = UIImage(systemName: "person.fill")
+        case .trackableWithUser:
+            image = UIImage(systemName: "person.2.fill")
         case .free:
             image = UIImage(systemName: "hand.wave.fill")
         }
@@ -167,9 +167,9 @@ class SubscriberStatusViewController: UIViewController {
         let image: UIImage?
         switch mapView.mapType {
         case .hybrid:
-            image = UIImage(systemName: "map.fill")
-        default:
             image = UIImage(systemName: "airplane")
+        default:
+            image = UIImage(systemName: "map.fill")
         }
         
         mapTypeButton.setImage(image, for: .normal)
