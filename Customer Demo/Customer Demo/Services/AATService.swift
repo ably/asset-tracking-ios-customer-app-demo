@@ -33,14 +33,13 @@ class AATService {
         desiredResolution = subscriberResolution
         let deviceID = UIDevice.current.identifierForVendor?.uuidString ?? "unknown device"
         
-        // TODO: We'll be using token auth instead
         subscriber = SubscriberFactory.subscribers()
             .connection(ConnectionConfiguration(apiKey: ablyAPIKey, clientId: deviceID))
             .trackingId(trackingID)
             .delegate(self)
             .log(LogConfiguration())
             .resolution(subscriberResolution)
-            .start(completion: completion)
+            .start(completion: completion)        
     }
 
     func stopSubscriber(_ completion: ResultHandler<Void>? = nil) {
