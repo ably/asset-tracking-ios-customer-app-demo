@@ -162,6 +162,7 @@
                     <navigationItem key="navigationItem" id="yi6-cz-6Ij"/>
                     <connections>
                         <outlet property="accuracySegmentedControl" destination="KjS-Pl-FBO" id="8Y2-yz-6pm"/>
+                        <outlet property="bottomConstraint" destination="2g7-jI-yWj" id="zTN-Em-DeB"/>
                         <outlet property="desiredIntervalTextField" destination="SMF-S2-bfG" id="NXk-XX-N3L"/>
                         <outlet property="minimumDisplacementTextField" destination="yTK-Fr-acR" id="ggR-SG-cdr"/>
                         <outlet property="startButton" destination="JRD-G3-8em" id="wah-dq-LlN"/>
