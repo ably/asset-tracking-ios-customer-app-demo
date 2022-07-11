@@ -10,15 +10,18 @@ import CoreLocation
 import AblyAssetTrackingSubscriber
 
 class SetupViewController: UIViewController {
-    @IBOutlet private var startButton: UIButton!
-    @IBOutlet private var trackableIDTextField: UITextField!
-    @IBOutlet private var minimumDisplacementTextField: UITextField!
-    @IBOutlet private var desiredIntervalTextField: UITextField!
-    @IBOutlet private var accuracySegmentedControl: UISegmentedControl!
+    @IBOutlet private weak var startButton: UIButton!
+    @IBOutlet private weak var trackableIDTextField: UITextField!
+    @IBOutlet private weak var minimumDisplacementTextField: UITextField!
+    @IBOutlet private weak var desiredIntervalTextField: UITextField!
+    @IBOutlet private weak var accuracySegmentedControl: UISegmentedControl!
+    @IBOutlet private weak var bottomConstraint: NSLayoutConstraint!
     
     let viewModel = SetupViewModel()
 
     override func viewDidLoad() {
+        super.viewDidLoad()
+
         startButton.layer.cornerRadius = 16
         
         let segmentedControlBackgroundColor = UIColor(red: 50/255, green: 116/255, blue: 219/255, alpha: 1)
@@ -31,8 +34,8 @@ class SetupViewController: UIViewController {
         minimumDisplacementTextField.delegate = self
         desiredIntervalTextField.delegate = self
         trackableIDTextField.delegate = self
-
-        super.viewDidLoad()
+        
+        setupKeyboardObserver()
     }
 
     @IBAction private func startButtonPressed() {
@@ -62,5 +65,22 @@ extension SetupViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+}
+
+extension SetupViewController: KeyboardObserver {
+
+    func keyboardWillAppear(properties: KeyboardProperties) {
+        self.bottomConstraint.constant = properties.frame.height
+        UIView.animate(withKeyboardProperties: properties) {
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    func keyboardWillDisappear(properties: KeyboardProperties) {
+        self.bottomConstraint.constant = 0
+        UIView.animate(withKeyboardProperties: properties) {
+            self.view.layoutIfNeeded()
+        }
     }
 }
