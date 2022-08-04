@@ -24,10 +24,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xrz-Op-KO2">
-                                <rect key="frame" x="0.0" y="724" width="414" height="138"/>
+                                <rect key="frame" x="0.0" y="695.5" width="414" height="166.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="4GZ-ML-ASg">
-                                        <rect key="frame" x="16" y="16" width="382" height="106"/>
+                                        <rect key="frame" x="16" y="16" width="382" height="134.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ffu-Q0-VcK">
                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="20.5"/>
@@ -41,14 +41,20 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oTa-3d-gPD">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oTa-3d-gPD">
                                                 <rect key="frame" x="0.0" y="57" width="382" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tQB-wQ-Qho">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tQB-wQ-Qho">
                                                 <rect key="frame" x="0.0" y="85.5" width="382" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZNY-np-xS7">
+                                                <rect key="frame" x="0.0" y="114" width="382" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -65,10 +71,10 @@
                                 </constraints>
                             </view>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Ih-R5-ztW">
-                                <rect key="frame" x="0.0" y="96.5" width="414" height="627.5"/>
+                                <rect key="frame" x="0.0" y="96.5" width="414" height="599"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O3Y-KQ-JKl">
-                                <rect key="frame" x="338" y="702" width="44" height="44"/>
+                                <rect key="frame" x="338" y="673.5" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="2Bx-i5-zNL"/>
                                     <constraint firstAttribute="width" constant="44" id="NXY-94-ice"/>
@@ -117,6 +123,7 @@
                         <outlet property="mapTrackingModeButton" destination="O3Y-KQ-JKl" id="xpa-0e-tWL"/>
                         <outlet property="mapTypeButton" destination="1Qd-jj-b7u" id="2m4-Gd-12S"/>
                         <outlet property="mapView" destination="7Ih-R5-ztW" id="9fZ-a2-LCH"/>
+                        <outlet property="skippedLocationsLabel" destination="ZNY-np-xS7" id="NSl-I0-Bum"/>
                         <outlet property="statusLabel" destination="Ffu-Q0-VcK" id="4tv-2m-VHz"/>
                         <outlet property="trackableIDLabel" destination="xdi-r7-gyz" id="Vec-Cx-1yZ"/>
                         <outlet property="updateIntervalLabel" destination="tQB-wQ-Qho" id="RUx-U2-4li"/>

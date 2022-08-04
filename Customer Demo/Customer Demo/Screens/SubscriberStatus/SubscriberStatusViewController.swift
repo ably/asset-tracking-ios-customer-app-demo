@@ -19,6 +19,7 @@ class SubscriberStatusViewController: UIViewController {
     @IBOutlet private var datetimeLabel: UILabel!
     @IBOutlet private var locationLabel: UILabel!
     @IBOutlet private var updateIntervalLabel: UILabel!
+    @IBOutlet private var skippedLocationsLabel: UILabel!
     @IBOutlet private var mapTrackingModeButton: UIButton!
     @IBOutlet private var mapTypeButton: UIButton!
     
@@ -51,6 +52,10 @@ class SubscriberStatusViewController: UIViewController {
     }
     
     func updateLocation(locationUpdate: LocationUpdate) {
+        guard let viewModel = viewModel else {
+            return
+        }
+        
         let location = CLLocationCoordinate2D(
             latitude: locationUpdate.location.coordinate.latitude,
             longitude: locationUpdate.location.coordinate.longitude
@@ -69,19 +74,25 @@ class SubscriberStatusViewController: UIViewController {
         updateMapRegion()
         
         datetimeLabel.text = "Time: \(Date(timeIntervalSince1970: locationUpdate.location.timestamp).description)"
-        locationLabel.text = "Location: \(String(format: "%.8f", location.latitude)), \(String(format: "%.8f", location.longitude))"
-        
+        locationLabel.text = "Location: \(String(format: "%.6f", location.latitude)), \(String(format: "%.6f", location.longitude)) " +
+            "(± \(String(format: "%.1f", locationUpdate.location.horizontalAccuracy)) m) " +
+            "heading \(String(format: "%.1f", locationUpdate.location.course))° " +
+            String(format: "%.2f", locationUpdate.location.speed) + " m/s " +
+            String(format: "%.2f", locationUpdate.location.altitude) + " MASL"
+                
         var lastUpdateIntervalString = "Unknown"
-        if let value = viewModel?.locationUpdateHistoryInteractor.lastInterval {
+        if let value = viewModel.locationUpdateHistoryInteractor.lastInterval {
             lastUpdateIntervalString = String(format: "%.4f", value)
         }
-        
         var averageUpdateIntervalString = "Unknown"
-        if let value = viewModel?.locationUpdateHistoryInteractor.averageInterval {
+        if let value = viewModel.locationUpdateHistoryInteractor.averageInterval {
             averageUpdateIntervalString = String(format: "%.4f", value)
         }
+        let desiredUpdateIntervalString = String(format: "%.4f", viewModel.subscriberResolution.desiredInterval)
         
-        updateIntervalLabel.text = "Update interval: \(lastUpdateIntervalString) / \(averageUpdateIntervalString) (last / avg)"
+        updateIntervalLabel.text = "Update interval: \(lastUpdateIntervalString) / \(averageUpdateIntervalString) / \(desiredUpdateIntervalString) (last / avg / desired)"
+        
+        skippedLocationsLabel.text = "Skipped locations: \(locationUpdate.skippedLocations.count)"
     }
     
     func updateStatus(_ status: ConnectionState) {
