@@ -50,7 +50,10 @@ class SetupViewController: UIViewController {
               let desiredInterval = Double(desiredIntervalText),
               let trackableID = trackableIDTextField.text,
               !trackableID.isEmpty
-        else { return }
+        else {
+            showValidationError()
+            return
+        }
         
         let accuracy = viewModel.getSelectedPublisherResolutionAccuracy(accuracyIndex: accuracySegmentedControl.selectedSegmentIndex)
         let resolution = Resolution(accuracy: accuracy, desiredInterval: desiredInterval, minimumDisplacement: minimumDisplacement)
@@ -58,6 +61,13 @@ class SetupViewController: UIViewController {
         subscriberStatusViewController.configure(resolution: resolution, trackableID: trackableID)
 
         navigationController?.pushViewController(subscriberStatusViewController, animated: true)
+    }
+    
+    func showValidationError() {
+        let alertController = UIAlertController(title: "Validation error", message: "Please fill out all fields", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        
+        self.present(alertController, animated: true)
     }
 }
 
