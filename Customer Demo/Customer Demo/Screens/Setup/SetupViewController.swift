@@ -11,7 +11,7 @@ import AblyAssetTrackingSubscriber
 
 class SetupViewController: UIViewController {
     @IBOutlet private weak var startButton: UIButton!
-    @IBOutlet private weak var trackableIDTextField: UITextField!
+    @IBOutlet private weak var orderIDTextField: UITextField!
     @IBOutlet private weak var minimumDisplacementTextField: UITextField!
     @IBOutlet private weak var desiredIntervalTextField: UITextField!
     @IBOutlet private weak var accuracySegmentedControl: UISegmentedControl!
@@ -33,23 +33,23 @@ class SetupViewController: UIViewController {
         
         minimumDisplacementTextField.delegate = self
         desiredIntervalTextField.delegate = self
-        trackableIDTextField.delegate = self
+        orderIDTextField.delegate = self
         
         setupKeyboardObserver()
     }
 
     @IBAction private func startButtonPressed() {
-        let storyboard = UIStoryboard(name: "SubscriberStatus", bundle: nil)
-        let subscriberStatusViewController = storyboard.instantiateViewController(withIdentifier: "SubscriberStatus")
-        guard let subscriberStatusViewController = subscriberStatusViewController as? SubscriberStatusViewController,
+        let storyboard = UIStoryboard(name: "DeliveryStatus", bundle: nil)
+        let deliveryStatusViewController = storyboard.instantiateViewController(withIdentifier: "DeliveryStatus")
+        guard let deliveryStatusViewController = deliveryStatusViewController as? DeliveryStatusViewController,
               let minimumDisplacementText = minimumDisplacementTextField.text,
               !minimumDisplacementText.isEmpty,
               let minimumDisplacement = Double(minimumDisplacementText),
               let desiredIntervalText = desiredIntervalTextField.text,
               !desiredIntervalText.isEmpty,
               let desiredInterval = Double(desiredIntervalText),
-              let trackableID = trackableIDTextField.text,
-              !trackableID.isEmpty
+              let orderID = orderIDTextField.text,
+              !orderID.isEmpty
         else {
             showValidationError()
             return
@@ -58,9 +58,9 @@ class SetupViewController: UIViewController {
         let accuracy = viewModel.getSelectedPublisherResolutionAccuracy(accuracyIndex: accuracySegmentedControl.selectedSegmentIndex)
         let resolution = Resolution(accuracy: accuracy, desiredInterval: desiredInterval, minimumDisplacement: minimumDisplacement)
         
-        subscriberStatusViewController.configure(resolution: resolution, trackableID: trackableID)
+        deliveryStatusViewController.configure(resolution: resolution, orderID: orderID)
 
-        navigationController?.pushViewController(subscriberStatusViewController, animated: true)
+        navigationController?.pushViewController(deliveryStatusViewController, animated: true)
     }
     
     func showValidationError() {

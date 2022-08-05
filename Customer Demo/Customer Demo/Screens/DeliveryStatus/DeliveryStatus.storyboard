@@ -9,15 +9,15 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--PublisherStatusViewController-->
+        <!--Delivery Status View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="SubscriberStatus" title="PublisherStatusViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="SubscriberStatusViewController" customModule="Customer_Demo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DeliveryStatus" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="DeliveryStatusViewController" customModule="Customer_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trackable ID: Unknown" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xdi-r7-gyz">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order ID: Unknown" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xdi-r7-gyz">
                                 <rect key="frame" x="16" y="60" width="382" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -123,9 +123,9 @@
                         <outlet property="mapTrackingModeButton" destination="O3Y-KQ-JKl" id="xpa-0e-tWL"/>
                         <outlet property="mapTypeButton" destination="1Qd-jj-b7u" id="2m4-Gd-12S"/>
                         <outlet property="mapView" destination="7Ih-R5-ztW" id="9fZ-a2-LCH"/>
+                        <outlet property="orderIDLabel" destination="xdi-r7-gyz" id="FJz-cO-SfZ"/>
                         <outlet property="skippedLocationsLabel" destination="ZNY-np-xS7" id="NSl-I0-Bum"/>
                         <outlet property="statusLabel" destination="Ffu-Q0-VcK" id="4tv-2m-VHz"/>
-                        <outlet property="trackableIDLabel" destination="xdi-r7-gyz" id="Vec-Cx-1yZ"/>
                         <outlet property="updateIntervalLabel" destination="tQB-wQ-Qho" id="RUx-U2-4li"/>
                     </connections>
                 </viewController>

@@ -21,9 +21,9 @@
 		21ECADC028630399008D946D /* Setup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21ECADBC28630399008D946D /* Setup.storyboard */; };
 		21ECADC128630399008D946D /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ECADBE28630399008D946D /* SetupViewController.swift */; };
 		21ECADC228630399008D946D /* SetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ECADBF28630399008D946D /* SetupViewModel.swift */; };
-		21ECADC528630541008D946D /* SubscriberStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ECADC428630541008D946D /* SubscriberStatusViewController.swift */; };
-		21ECADC828630C97008D946D /* SubscriberStatus.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21ECADC628630C97008D946D /* SubscriberStatus.storyboard */; };
-		21ECADC928630C97008D946D /* SubscriberStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ECADC728630C97008D946D /* SubscriberStatusViewModel.swift */; };
+		21ECADC528630541008D946D /* DeliveryStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ECADC428630541008D946D /* DeliveryStatusViewController.swift */; };
+		21ECADC828630C97008D946D /* DeliveryStatus.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21ECADC628630C97008D946D /* DeliveryStatus.storyboard */; };
+		21ECADC928630C97008D946D /* DeliveryStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ECADC728630C97008D946D /* DeliveryStatusViewModel.swift */; };
 		21ECADCC2863419F008D946D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21ECADCB2863419F008D946D /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,9 +43,9 @@
 		21ECADBD28630399008D946D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Setup.storyboard; sourceTree = "<group>"; };
 		21ECADBE28630399008D946D /* SetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
 		21ECADBF28630399008D946D /* SetupViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetupViewModel.swift; sourceTree = "<group>"; };
-		21ECADC428630541008D946D /* SubscriberStatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberStatusViewController.swift; sourceTree = "<group>"; };
-		21ECADC628630C97008D946D /* SubscriberStatus.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SubscriberStatus.storyboard; sourceTree = "<group>"; };
-		21ECADC728630C97008D946D /* SubscriberStatusViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriberStatusViewModel.swift; sourceTree = "<group>"; };
+		21ECADC428630541008D946D /* DeliveryStatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryStatusViewController.swift; sourceTree = "<group>"; };
+		21ECADC628630C97008D946D /* DeliveryStatus.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DeliveryStatus.storyboard; sourceTree = "<group>"; };
+		21ECADC728630C97008D946D /* DeliveryStatusViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeliveryStatusViewModel.swift; sourceTree = "<group>"; };
 		21ECADCB2863419F008D946D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -100,7 +100,7 @@
 		0C510CA52851E091008F0E5C /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				21ECADC328630504008D946D /* SubscriberStatus */,
+				21ECADC328630504008D946D /* DeliveryStatus */,
 				21ECADBB28630399008D946D /* Setup */,
 			);
 			path = Screens;
@@ -140,15 +140,15 @@
 			path = Setup;
 			sourceTree = "<group>";
 		};
-		21ECADC328630504008D946D /* SubscriberStatus */ = {
+		21ECADC328630504008D946D /* DeliveryStatus */ = {
 			isa = PBXGroup;
 			children = (
-				21ECADC628630C97008D946D /* SubscriberStatus.storyboard */,
-				21ECADC728630C97008D946D /* SubscriberStatusViewModel.swift */,
-				21ECADC428630541008D946D /* SubscriberStatusViewController.swift */,
+				21ECADC628630C97008D946D /* DeliveryStatus.storyboard */,
+				21ECADC728630C97008D946D /* DeliveryStatusViewModel.swift */,
+				21ECADC428630541008D946D /* DeliveryStatusViewController.swift */,
 				21784C41286DE003003E5FB0 /* LocationUpdateHistoryInteractor.swift */,
 			);
-			path = SubscriberStatus;
+			path = DeliveryStatus;
 			sourceTree = "<group>";
 		};
 		21ECADCA2863419F008D946D /* Frameworks */ = {
@@ -226,7 +226,7 @@
 			files = (
 				21ECADC028630399008D946D /* Setup.storyboard in Resources */,
 				0C510CB0285208A2008F0E5C /* .swiftlint.yml in Resources */,
-				21ECADC828630C97008D946D /* SubscriberStatus.storyboard in Resources */,
+				21ECADC828630C97008D946D /* DeliveryStatus.storyboard in Resources */,
 				0C510CA42851DE49008F0E5C /* Secrets.plist in Resources */,
 				0C510C7E285089BF008F0E5C /* LaunchScreen.storyboard in Resources */,
 				0C510C7B285089BF008F0E5C /* Assets.xcassets in Resources */,
@@ -263,9 +263,9 @@
 			files = (
 				21EB5D30287858F200669D45 /* KeyboardObserver.swift in Sources */,
 				0C510CA22851DD86008F0E5C /* Environment.swift in Sources */,
-				21ECADC528630541008D946D /* SubscriberStatusViewController.swift in Sources */,
+				21ECADC528630541008D946D /* DeliveryStatusViewController.swift in Sources */,
 				21784C42286DE003003E5FB0 /* LocationUpdateHistoryInteractor.swift in Sources */,
-				21ECADC928630C97008D946D /* SubscriberStatusViewModel.swift in Sources */,
+				21ECADC928630C97008D946D /* DeliveryStatusViewModel.swift in Sources */,
 				0C510CAB2851E306008F0E5C /* AATService.swift in Sources */,
 				0C510C72285089BD008F0E5C /* AppDelegate.swift in Sources */,
 				21ECADC228630399008D946D /* SetupViewModel.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  SubscriberStatusViewModel.swift
+//  DeliveryStatusViewModel.swift
 //  Customer Demo
 //
 //  Copyright 2022 Ably Real-time Ltd (ably.com)
@@ -9,22 +9,22 @@ import Foundation
 import CoreLocation
 import AblyAssetTrackingSubscriber
 
-class SubscriberStatusViewModel {
+class DeliveryStatusViewModel {
     
-    weak var viewController: SubscriberStatusViewController?
+    weak var viewController: DeliveryStatusViewController?
     let locationManager = CLLocationManager()
 
-    let trackableID: String
+    let orderID: String
     let subscriberResolution: Resolution
     let aatService = AATService.sharedInstance
     
-    enum MapTrackingMode { case trackableOnly, trackableWithUser, free }
-    var mapTrackingMode: MapTrackingMode = .trackableOnly
+    enum MapTrackingMode { case rider, riderAndCustomer, free }
+    var mapTrackingMode: MapTrackingMode = .rider
     
     var locationUpdateHistoryInteractor = LocationUpdateHistoryInteractor()
     
-    init(subscriberResolution: Resolution, trackableID: String, viewController: SubscriberStatusViewController) {
-        self.trackableID = trackableID
+    init(subscriberResolution: Resolution, orderID: String, viewController: DeliveryStatusViewController) {
+        self.orderID = orderID
         self.subscriberResolution = subscriberResolution
         self.viewController = viewController
     }
@@ -34,7 +34,7 @@ class SubscriberStatusViewModel {
         aatService.delegate = self
         aatService.startSubscriber(
             subscriberResolution: subscriberResolution,
-            trackingID: trackableID
+            trackingID: orderID
         ) { [weak self] result in
             print("startSubscriber(subscriberResolution:trackingID:completion:) result is \(result)")
             if case let .failure(error) = result {
@@ -48,7 +48,7 @@ class SubscriberStatusViewModel {
     }
 }
 
-extension SubscriberStatusViewModel: AATServiceDelegate {
+extension DeliveryStatusViewModel: AATServiceDelegate {
     func subscriber(sender: Subscriber, didChangeAssetConnectionStatus status: ConnectionState) {
         viewController?.updateStatus(status)
         print("subscriber(sender: \(sender), didChangeAssetConnectionStatus: \(status))")
