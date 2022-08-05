@@ -32,8 +32,14 @@ class SubscriberStatusViewModel {
     func viewDidLoad() {
         locationManager.requestWhenInUseAuthorization()
         aatService.delegate = self
-        aatService.startSubscriber(subscriberResolution: subscriberResolution, trackingID: trackableID) { result in
+        aatService.startSubscriber(
+            subscriberResolution: subscriberResolution,
+            trackingID: trackableID
+        ) { [weak self] result in
             print("startSubscriber(subscriberResolution:trackingID:completion:) result is \(result)")
+            if case let .failure(error) = result {
+                self?.viewController?.showError(error)
+            }
         }
     }
     
@@ -50,6 +56,7 @@ extension SubscriberStatusViewModel: AATServiceDelegate {
     
     func subscriber(sender: Subscriber, didFailWithError error: ErrorInformation) {
         print("subscriber(sender: \(sender), didFailWithError: \(error))")
+        viewController?.showError(error)
     }
     
     func subscriber(sender: Subscriber, didUpdateDesiredInterval interval: Double) {

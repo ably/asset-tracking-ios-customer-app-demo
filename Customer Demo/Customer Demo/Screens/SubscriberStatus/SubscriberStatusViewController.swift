@@ -185,6 +185,13 @@ class SubscriberStatusViewController: UIViewController {
         
         mapTypeButton.setImage(image, for: .normal)
     }
+    
+    func showError(_ error: ErrorInformation) {
+        let alertController = UIAlertController(title: "Error", message: error.message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        
+        present(alertController, animated: true)
+    }
 }
 
 extension SubscriberStatusViewController: MKMapViewDelegate {
