@@ -1,5 +1,5 @@
 //
-//  SubscriberStatusViewController.swift
+//  DeliveryStatusViewController.swift
 //  Customer Demo
 //
 //  Copyright 2022 Ably Real-time Ltd (ably.com)
@@ -10,9 +10,9 @@ import UIKit
 import AblyAssetTrackingSubscriber
 import MapKit
 
-class SubscriberStatusViewController: UIViewController {
+class DeliveryStatusViewController: UIViewController {
     
-    @IBOutlet private var trackableIDLabel: UILabel!
+    @IBOutlet private var orderIDLabel: UILabel!
     @IBOutlet private var mapView: MKMapView!
     
     @IBOutlet private var statusLabel: UILabel!
@@ -23,17 +23,17 @@ class SubscriberStatusViewController: UIViewController {
     @IBOutlet private var mapTrackingModeButton: UIButton!
     @IBOutlet private var mapTypeButton: UIButton!
     
-    weak var trackableAnnotation: MKPointAnnotation?
-    var viewModel: SubscriberStatusViewModel?
+    weak var riderAnnotation: MKPointAnnotation?
+    var viewModel: DeliveryStatusViewModel?
     var ignoreRegionChange = true
     
-    func configure(resolution: Resolution, trackableID: String) {
-        viewModel = SubscriberStatusViewModel(subscriberResolution: resolution, trackableID: trackableID, viewController: self)
+    func configure(resolution: Resolution, orderID: String) {
+        viewModel = DeliveryStatusViewModel(subscriberResolution: resolution, orderID: orderID, viewController: self)
         title = "Status"
     }
     
     override func viewDidLoad() {
-        trackableIDLabel.text = "Trackable ID: \(viewModel?.trackableID ?? "Unknown")"
+        orderIDLabel.text = "Order ID: \(viewModel?.orderID ?? "Unknown")"
         updateMapTrackingModeButton()
         updateMapTypeButton()
         statusLabel.text = "Status: Unknown"
@@ -61,14 +61,14 @@ class SubscriberStatusViewController: UIViewController {
             longitude: locationUpdate.location.coordinate.longitude
         )
         
-        if let annotation = trackableAnnotation {
+        if let annotation = riderAnnotation {
             annotation.coordinate = location
         } else {
             let annotation = MKPointAnnotation()
             annotation.coordinate = location
             mapView.addAnnotation(annotation)
             
-            trackableAnnotation = annotation
+            riderAnnotation = annotation
         }
         
         updateMapRegion()
@@ -114,12 +114,12 @@ class SubscriberStatusViewController: UIViewController {
         guard let mode = viewModel?.mapTrackingMode else { return }
         
         switch mode {
-        case .trackableOnly:
-            viewModel?.mapTrackingMode = .trackableWithUser
-        case .trackableWithUser:
-            viewModel?.mapTrackingMode = .trackableOnly
+        case .rider:
+            viewModel?.mapTrackingMode = .riderAndCustomer
+        case .riderAndCustomer:
+            viewModel?.mapTrackingMode = .rider
         case .free:
-            viewModel?.mapTrackingMode = .trackableOnly
+            viewModel?.mapTrackingMode = .rider
         }
         
         updateMapTrackingModeButton()
@@ -141,13 +141,13 @@ class SubscriberStatusViewController: UIViewController {
         guard let mode = viewModel?.mapTrackingMode else { return }
         
         switch mode {
-        case .trackableOnly:
-            guard let location = trackableAnnotation?.coordinate else { return }
+        case .rider:
+            guard let location = riderAnnotation?.coordinate else { return }
             
             let region = MKCoordinateRegion(center: location, span: MKCoordinateSpan())
             ignoreRegionChange = true
             mapView.setRegion(region, animated: true)
-        case .trackableWithUser:
+        case .riderAndCustomer:
             ignoreRegionChange = true
             mapView.showAnnotations(mapView.annotations, animated: true)
         case .free:
@@ -160,9 +160,9 @@ class SubscriberStatusViewController: UIViewController {
         
         let image: UIImage?
         switch mode {
-        case .trackableOnly:
+        case .rider:
             image = UIImage(systemName: "person.fill")
-        case .trackableWithUser:
+        case .riderAndCustomer:
             image = UIImage(systemName: "person.2.fill")
         case .free:
             image = UIImage(systemName: "hand.wave.fill")
@@ -194,7 +194,7 @@ class SubscriberStatusViewController: UIViewController {
     }
 }
 
-extension SubscriberStatusViewController: MKMapViewDelegate {
+extension DeliveryStatusViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         if !ignoreRegionChange {

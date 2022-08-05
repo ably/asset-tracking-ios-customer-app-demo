@@ -80,8 +80,8 @@
                                                 </segments>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </segmentedControl>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trackable ID:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GcB-Dc-Dqa" userLabel="Routing Profile Label">
-                                                <rect key="frame" x="157.5" y="292" width="99" height="21"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order ID:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GcB-Dc-Dqa" userLabel="Routing Profile Label">
+                                                <rect key="frame" x="172.5" y="292" width="69" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -165,8 +165,8 @@
                         <outlet property="bottomConstraint" destination="2g7-jI-yWj" id="zTN-Em-DeB"/>
                         <outlet property="desiredIntervalTextField" destination="SMF-S2-bfG" id="NXk-XX-N3L"/>
                         <outlet property="minimumDisplacementTextField" destination="yTK-Fr-acR" id="ggR-SG-cdr"/>
+                        <outlet property="orderIDTextField" destination="zoe-aB-DAM" id="Hoi-fi-r36"/>
                         <outlet property="startButton" destination="JRD-G3-8em" id="wah-dq-LlN"/>
-                        <outlet property="trackableIDTextField" destination="zoe-aB-DAM" id="1RU-l4-2wG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
