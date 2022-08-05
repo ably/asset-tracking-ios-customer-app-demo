@@ -67,7 +67,7 @@ class SetupViewController: UIViewController {
         let alertController = UIAlertController(title: "Validation error", message: "Please fill out all fields", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default))
         
-        self.present(alertController, animated: true)
+        present(alertController, animated: true)
     }
 }
 
@@ -81,14 +81,14 @@ extension SetupViewController: UITextFieldDelegate {
 extension SetupViewController: KeyboardObserver {
 
     func keyboardWillAppear(properties: KeyboardProperties) {
-        self.bottomConstraint.constant = properties.frame.height
+        bottomConstraint.constant = properties.frame.height
         UIView.animate(withKeyboardProperties: properties) {
             self.view.layoutIfNeeded()
         }
     }
 
     func keyboardWillDisappear(properties: KeyboardProperties) {
-        self.bottomConstraint.constant = 0
+        bottomConstraint.constant = 0
         UIView.animate(withKeyboardProperties: properties) {
             self.view.layoutIfNeeded()
         }
