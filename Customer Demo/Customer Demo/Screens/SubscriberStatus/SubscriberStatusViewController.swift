@@ -190,7 +190,7 @@ class SubscriberStatusViewController: UIViewController {
         let alertController = UIAlertController(title: "Error", message: error.message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default))
         
-        self.present(alertController, animated: true)
+        present(alertController, animated: true)
     }
 }
 
