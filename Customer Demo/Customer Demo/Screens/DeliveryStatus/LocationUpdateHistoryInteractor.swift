@@ -35,7 +35,7 @@ class LocationUpdateHistoryInteractor {
     func append(_ datum: LocationUpdate) {
         data.append(datum)
         if data.count > 5 {
-            _ = data.dropFirst()
+            data.removeFirst()
         }
     }
 }
