@@ -15,7 +15,8 @@ class DeliveryStatusViewModel {
     let locationManager = CLLocationManager()
 
     let orderID: String
-    let subscriberResolution: Resolution
+    let jsonWebToken: String
+    let resolution: Resolution
     let aatService = AATService.sharedInstance
     
     enum MapTrackingMode { case rider, riderAndCustomer, free }
@@ -23,18 +24,26 @@ class DeliveryStatusViewModel {
     
     var locationUpdateHistoryInteractor = LocationUpdateHistoryInteractor()
     
-    init(subscriberResolution: Resolution, orderID: String, viewController: DeliveryStatusViewController) {
+    init(resolution: Resolution, orderID: String, jsonWebToken: String) {
+        self.resolution = resolution
         self.orderID = orderID
-        self.subscriberResolution = subscriberResolution
-        self.viewController = viewController
+        self.jsonWebToken = jsonWebToken
     }
 
     func viewDidLoad() {
         locationManager.requestWhenInUseAuthorization()
         aatService.delegate = self
+        
+        guard let username = MemoryStorage.shared.credentials?.username else {
+            self.viewController?.showError()
+            return
+        }
+        
         aatService.startSubscriber(
-            subscriberResolution: subscriberResolution,
-            trackingID: orderID
+            trackingID: orderID,
+            clientID: username,
+            jsonWebToken: jsonWebToken,
+            subscriberResolution: resolution
         ) { [weak self] result in
             print("startSubscriber(subscriberResolution:trackingID:completion:) result is \(result)")
             if case let .failure(error) = result {
