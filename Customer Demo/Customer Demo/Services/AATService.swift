@@ -22,19 +22,20 @@ protocol AATServiceDelegate: AnyObject {
 class AATService {
     static let sharedInstance = AATService()
     
-    let ablyAPIKey = EnvironmentHelper.ablyKey
-
     weak var delegate: AATServiceDelegate?
     
     private(set) var desiredResolution: Resolution?
     private var subscriber: Subscriber?
 
-    func startSubscriber(subscriberResolution: Resolution, trackingID: String, completion: @escaping ResultHandler<Void>) {
+    func startSubscriber(trackingID: String, clientID: String, jsonWebToken: String, subscriberResolution: Resolution, completion: @escaping ResultHandler<Void>) {
         desiredResolution = subscriberResolution
-        let deviceID = UIDevice.current.identifierForVendor?.uuidString ?? "unknown device"
+                
+        let connectionConfiguration = ConnectionConfiguration(clientId: clientID) { _, resultHandler in
+            resultHandler(.success(.jwt(jsonWebToken)))
+        }
         
         subscriber = SubscriberFactory.subscribers()
-            .connection(ConnectionConfiguration(apiKey: ablyAPIKey, clientId: deviceID))
+            .connection(connectionConfiguration)
             .trackingId(trackingID)
             .delegate(self)
             .log(LogConfiguration())

@@ -9,17 +9,23 @@ import UIKit
 import CoreLocation
 import AblyAssetTrackingSubscriber
 
-class SetupViewController: UIViewController {
+class SetupViewController: UIViewController, ActivityIndicating {
+    @IBOutlet private weak var sourceLatitudeTextField: UITextField!
+    @IBOutlet private weak var sourceLongitudeTextField: UITextField!
+    @IBOutlet private weak var destinationLatitudeTextField: UITextField!
+    @IBOutlet private weak var destinationLongitudeTextField: UITextField!
+
     @IBOutlet private weak var startButton: UIButton!
-    @IBOutlet private weak var orderIDTextField: UITextField!
     @IBOutlet private weak var minimumDisplacementTextField: UITextField!
     @IBOutlet private weak var desiredIntervalTextField: UITextField!
     @IBOutlet private weak var accuracySegmentedControl: UISegmentedControl!
     @IBOutlet private weak var bottomConstraint: NSLayoutConstraint!
     
-    let viewModel = SetupViewModel()
+    let presenter = SetupPresenter()
 
     override func viewDidLoad() {
+        presenter.viewController = self
+        
         super.viewDidLoad()
 
         startButton.layer.cornerRadius = 16
@@ -33,41 +39,18 @@ class SetupViewController: UIViewController {
         
         minimumDisplacementTextField.delegate = self
         desiredIntervalTextField.delegate = self
-        orderIDTextField.delegate = self
         
         setupKeyboardObserver()
     }
 
     @IBAction private func startButtonPressed() {
-        let storyboard = UIStoryboard(name: "DeliveryStatus", bundle: nil)
-        let deliveryStatusViewController = storyboard.instantiateViewController(withIdentifier: "DeliveryStatus")
-        guard let deliveryStatusViewController = deliveryStatusViewController as? DeliveryStatusViewController,
-              let minimumDisplacementText = minimumDisplacementTextField.text,
-              !minimumDisplacementText.isEmpty,
-              let minimumDisplacement = Double(minimumDisplacementText),
-              let desiredIntervalText = desiredIntervalTextField.text,
-              !desiredIntervalText.isEmpty,
-              let desiredInterval = Double(desiredIntervalText),
-              let orderID = orderIDTextField.text,
-              !orderID.isEmpty
-        else {
-            showValidationError()
-            return
-        }
-        
-        let accuracy = viewModel.getSelectedPublisherResolutionAccuracy(accuracyIndex: accuracySegmentedControl.selectedSegmentIndex)
-        let resolution = Resolution(accuracy: accuracy, desiredInterval: desiredInterval, minimumDisplacement: minimumDisplacement)
-        
-        deliveryStatusViewController.configure(resolution: resolution, orderID: orderID)
-
-        navigationController?.pushViewController(deliveryStatusViewController, animated: true)
-    }
-    
-    func showValidationError() {
-        let alertController = UIAlertController(title: "Validation error", message: "Please fill out all fields", preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .default))
-        
-        present(alertController, animated: true)
+        presenter.handleSubmitAction(
+            sourceLocationText: (sourceLatitudeTextField.text ?? "", sourceLongitudeTextField.text ?? ""),
+            destinationLocationText: (destinationLatitudeTextField.text ?? "", destinationLongitudeTextField.text ?? ""),
+            minimumDisplacementText: minimumDisplacementTextField.text ?? "",
+            desiredIntervalText: desiredIntervalTextField.text ?? "",
+            accuracyIndex: accuracySegmentedControl.selectedSegmentIndex
+        )
     }
 }
 

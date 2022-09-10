@@ -27,12 +27,14 @@ class DeliveryStatusViewController: UIViewController {
     var viewModel: DeliveryStatusViewModel?
     var ignoreRegionChange = true
     
-    func configure(resolution: Resolution, orderID: String) {
-        viewModel = DeliveryStatusViewModel(subscriberResolution: resolution, orderID: orderID, viewController: self)
+    func configure(resolution: Resolution, orderID: String, jsonWebToken: String) {
+        viewModel = DeliveryStatusViewModel(resolution: resolution, orderID: orderID, jsonWebToken: jsonWebToken)
         title = "Status"
     }
     
     override func viewDidLoad() {
+        viewModel?.viewController = self
+        
         orderIDLabel.text = "Order ID: \(viewModel?.orderID ?? "Unknown")"
         updateMapTrackingModeButton()
         updateMapTypeButton()
@@ -88,7 +90,7 @@ class DeliveryStatusViewController: UIViewController {
         if let value = viewModel.locationUpdateHistoryInteractor.averageInterval {
             averageUpdateIntervalString = String(format: "%.4f", value)
         }
-        let desiredUpdateIntervalString = String(format: "%.4f", viewModel.subscriberResolution.desiredInterval)
+        let desiredUpdateIntervalString = String(format: "%.4f", viewModel.resolution.desiredInterval)
         
         updateIntervalLabel.text = "Update interval: \(lastUpdateIntervalString) / \(averageUpdateIntervalString) / \(desiredUpdateIntervalString) (last / avg / desired)"
         
@@ -186,8 +188,8 @@ class DeliveryStatusViewController: UIViewController {
         mapTypeButton.setImage(image, for: .normal)
     }
     
-    func showError(_ error: ErrorInformation) {
-        let alertController = UIAlertController(title: "Error", message: error.message, preferredStyle: .alert)
+    func showError(_ error: ErrorInformation? = nil) {
+        let alertController = UIAlertController(title: "Error", message: error?.message ?? "Please try again", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default))
         
         present(alertController, animated: true)

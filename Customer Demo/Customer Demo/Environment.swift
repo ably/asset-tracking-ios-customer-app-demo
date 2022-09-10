@@ -16,10 +16,10 @@ public enum EnvironmentHelper {
         }
         return dictionary
     }()
-
-    static let ablyKey: String = {
-        guard let key = EnvironmentHelper.infoDictionary["ABLY_API_KEY"] as? String, !key.isEmpty else {
-            fatalError("ABLY_API_KEY not set in plist for this environment")
+    
+    static let backendURL: String = {
+        guard let key = EnvironmentHelper.infoDictionary["BACKEND_URL"] as? String, !key.isEmpty else {
+            fatalError("BACKEND_URL not set in plist for this environment")
         }
         return key
     }()

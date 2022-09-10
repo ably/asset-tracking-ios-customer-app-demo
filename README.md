@@ -26,8 +26,8 @@ Xcode 13.4+ is recommended. It's not tested in any previous version. App can be 
 ### Basic setup and running the app
 - To run the app you'll first need to configure your Mapbox account and credentials. Please follow [the guide](https://docs.mapbox.com/ios/search/guides/install/#configure-credentials).
 - You'll need a `Secrets.plist` file containing Mapbox Access Token and the Ably API Key. To do this you can rename the `Secrets.plist.example` file at the root of the project, and fill it out with your data.
-- `ABLY_API_KEY`: Used by the app to authenticate with Ably using basic authentication. Will be replaced with the token auth method once the app reaches [Milestone 3](https://github.com/ably/asset-tracking-demos/blob/main/app-requirements.md#milestone-3-enhanced). You can get the Ably API Key [here](https://ably.com/accounts).
 - `MAPBOX_ACCESS_TOKEN`: Used to access Mapbox Navigation SDK/APIs, and can be taken from [here](https://account.mapbox.com/).
+- `BACKEND_URL`: Backend URL used by the app to authenticate with Ably. For more details, see [Ably Asset Tracking Backend Demo](https://github.com/ably/asset-tracking-backend-demo).
 
 ## Resources
 - [Asset Tracking Documentation](https://ably.com/docs/asset-tracking)
